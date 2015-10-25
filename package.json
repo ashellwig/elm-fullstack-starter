@@ -1,6 +1,6 @@
 {
   "name": "elm-express-starter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Elm Express starter",
   "scripts": {
     "start": "gulp"
