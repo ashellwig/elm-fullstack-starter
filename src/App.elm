@@ -12,7 +12,7 @@ import Task exposing (..)
 type alias Model = String
 
 init : (Model, Effects Action)
-init = ("Loading", loadData)
+init = ("Loading...", loadData)
 
 -- UPDATE
 
