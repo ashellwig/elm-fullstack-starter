@@ -1,7 +1,7 @@
 {
-  "name": "elm-express-starter",
-  "version": "1.0.1",
-  "description": "Elm Express starter",
+  "name": "elm-fullstack-starter",
+  "version": "1.0.2",
+  "description": "Elm fullstack starter",
   "scripts": {
     "start": "gulp"
   },

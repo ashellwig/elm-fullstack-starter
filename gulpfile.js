@@ -1,3 +1,8 @@
+/*
+ToDo
+ - Add uglify
+ - debug
+*/
 var	gulp           = require('gulp'),
 	nodemon        = require('gulp-nodemon'),
 	concat         = require('gulp-concat'),
@@ -5,10 +10,9 @@ var	gulp           = require('gulp'),
 	browserSync    = require('browser-sync').create(),
 	sourcemaps     = require('gulp-sourcemaps'),
 	sass           = require('gulp-sass'),
-	clean          = require('gulp-clean'),
+	// uglify		   = require('gulp-minify-css'),
 	elm            = require('gulp-elm'),
-	inject         = require('gulp-inject');
-var runSequence    = require('run-sequence');
+    runSequence    = require('run-sequence');
 
 var paths = {
 	compileDestination: "dist",
@@ -95,65 +99,10 @@ gulp.task('compilation', ['home', 'sass']);
 
 /*
  * P R O D U C T I O N
+ * T B C
  */
 
 /*
  * A P I
  */
 gulp.task('default', ['compilation', 'elm-compile', 'watch']);
-
-/* ******
-
-gulp.task('injectjs', ['home'], function() {
-	var sources = gulp.src(injectScripts, {read: false, cwd: paths.compileDestination});
-	// var sources = gulp.src(injectScripts, {read: false, cwd: paths.compileDestination});
-
-	return gulp.src(paths.compileDestination+'/index.html')
-		.pipe(inject(sources))
-		.pipe(gulp.dest(paths.compileDestination));
-});
-var	gulp           = require('gulp'),
-    elm            = require('gulp-elm'),
-    sass           = require('gulp-sass'),
-    browserSync    = require('browser-sync');
-
-var paths = {
-    elm : "./src/*.elm",
-    main : "./src/Main.elm",
-    rest : ['src/*.{html,js,png}'],
-    sass: 'src/*.scss',
-    dist : '../server/public/elm/'
-}
-paths.distWatch = [ paths.dist, "!"+paths.dist+"*.css" ]
-
-gulp.task('copy', function() {
-    return gulp.src(paths.rest)
-        .pipe(gulp.dest(paths.dist));
-});
-
-gulp.task('sass', function() {
-	return gulp.src(paths.sass)
-	.pipe(sass().on('error', sass.logError))
-	.pipe(gulp.dest(paths.dist))
-	.pipe(browserSync.stream()); 			// injects new styles with page reload!
-});
-
-gulp.task('serve', function() {
-	browserSync.init({
-        proxy: "http://localhost:5000"
-        // server: {
-        //     baseDir: paths.dist
-        // }
-	});
-});
-
-gulp.task('watch', ['serve'], function() {
-// gulp.task('watch', function() {
-    gulp.watch(paths.elm, ['compile']);
-    gulp.watch(paths.rest, ['copy']);
-    gulp.watch(paths.sass, ['sass']);
-    gulp.watch(paths.distWatch).on('change', browserSync.reload);
-});
-
-gulp.task('default', ['compile', 'copy', 'sass', 'watch']);
-*/

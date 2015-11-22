@@ -13,5 +13,3 @@ module.exports = function (app) {
         res.sendFile(path.join(__dirname, '../../dist/index.html'));
     });
 }
-
-// module.exports = router;

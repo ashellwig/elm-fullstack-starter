@@ -24,7 +24,6 @@ update action model =
     case action of
         Data (Just str) -> (str, Effects.none)
         Data Nothing -> ("Download error", Effects.none)
-        otherwise -> (model, Effects.none)
 
 -- VIEW
 
