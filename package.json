@@ -1,13 +1,13 @@
 {
   "author": "Simon Hampton",
   "name": "elm-fullstack-starter",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Elm fullstack starter",
   "license": "ISC",
   "repository": "https://github.com/simonh1000/elm-fullstack-starter",
   "scripts": {
     "start": "gulp",
-    "production" : "gulp build"
+    "production": "gulp build"
   },
   "engines": {
     "node": ">=4.x"
