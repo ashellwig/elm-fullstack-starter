@@ -17,5 +17,5 @@ Client side files are compiled into, and served from, './dist'.
 
 To compile for production use `gulp build`.
 
-## ToDo
- - Elm debug (when available)
+## Hotloading!!!!
+See my [Webpack starter](https://github.com/simonh1000/elm-hot-loader)
