@@ -9,7 +9,7 @@ var	gulp           = require('gulp'),
 	// production tools
     runSequence    = require('run-sequence'),
 	gulpif         = require('gulp-if'),
-	minifyCss	   = require('gulp-minify-css'),
+	minifyCss	   = require('gulp-minify-css'),      // use gulp-cssnano instead
 	uglify         = require('gulp-uglify');
 
 var paths = {
@@ -30,7 +30,7 @@ gulp.task('serve', function(cb){
 	var called = false;
 	return nodemon({
 		"script": 'server/bin/www',     // port 5000 by default
-	    "watch": paths.server,
+	    // "watch": paths.server,
 		"ext": "js"
 	})
 	.on('start', function () {

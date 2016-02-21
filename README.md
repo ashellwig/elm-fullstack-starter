@@ -1,10 +1,11 @@
-# Elm - Fullstack starter package
+# MEEN-stack (Mongo, Elm, Express, Node) starter package
 
 **Elm** fullstack starter package with Jade, Sass, Browser-sync and an Express backend.
 
 To use, install and run...:
 
 ```
+git clone https://github.com/simonh1000/elm-fullstack-starter
 npm install
 elm-package install
 
