@@ -9,7 +9,7 @@ var	gulp           = require('gulp'),
 	// production tools
     runSequence    = require('run-sequence'),
 	gulpif         = require('gulp-if'),
-	minifyCss	   = require('gulp-minify-css'),      // use gulp-cssnano instead
+	cleanCss	   = require('gulp-clean-css'),      // use gulp-cssnano instead
 	uglify         = require('gulp-uglify');
 
 var paths = {
@@ -59,7 +59,7 @@ gulp.task('sass', function() {
 	return gulp.src(paths.scss)
 	.pipe(sass().on('error', sass.logError))
 	.pipe(concat('styles.css'))
-	.pipe( gulpif(production, minifyCss()) )    // minify in production
+	.pipe( gulpif(production, cleanCss()) )    // minify in production
 	.pipe(gulp.dest(paths.dist))
 	.pipe(browserSync.stream()); 			// injects new styles without page reload!
 });
@@ -109,11 +109,15 @@ gulp.task('del', function(cb) {
 	.then( () => cb() );
 });
 
+/*
+ * A P I
+ * Build - create production assets
+ * Default - load with browserSync
+ */
+
 gulp.task('build', ['del'], function() {
 	production = true;
 	runSequence('compilation', 'elm-compile');
 });
-/*
- * A P I
- */
+
 gulp.task('default', ['compilation', 'elm-compile', 'watch']);
