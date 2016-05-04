@@ -1,7 +1,7 @@
 var	gulp           = require('gulp'),
 	nodemon        = require('gulp-nodemon'),
 	concat         = require('gulp-concat'),
-	jade           = require('gulp-jade'),
+	pug           = require('gulp-pug'),
 	browserSync    = require('browser-sync').create(),
 	sourcemaps     = require('gulp-sourcemaps'),
 	sass           = require('gulp-sass'),
@@ -15,7 +15,7 @@ var	gulp           = require('gulp'),
 var paths = {
 	dist: "dist",
 	server  : './server',
-	html    : ['src/index.jade'],
+	html    : ['src/index.pug'],
 	scss    : ['src/**/*.{scss, sass}'],
 	elm     : "src/**/*.elm",
 	elmMain     : "src/Main.elm"
@@ -51,7 +51,7 @@ gulp.task('serve', function(cb){
 // runs jade on index.jade
 gulp.task('html', function() {
 	return gulp.src(paths.html)
-	.pipe(jade({pretty: true}))
+	.pipe(pug({pretty: true}))
 	.pipe(gulp.dest(paths.dist));
 });
 
