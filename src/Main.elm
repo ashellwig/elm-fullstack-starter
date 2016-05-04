@@ -1,21 +1,13 @@
-import StartApp
+module Main exposing (main)
 
-import Effects exposing (Never)
-import Task
+import Html.App as Html
 
 import App exposing (init, update, view)
 
-app =
-  StartApp.start
+main =
+  Html.program
     { init = init
     , update = update
     , view = view
-    , inputs = []
+    , subscriptions = \_ -> Sub.none
     }
-
-main =
-  app.html
-
-port tasks : Signal (Task.Task Never ())
-port tasks =
-  app.tasks

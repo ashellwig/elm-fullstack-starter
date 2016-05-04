@@ -1,41 +1,43 @@
-module App (init, update, view) where
+module App exposing (init, update, view)
 
 import Html exposing (..)
-import Http exposing (get)
+import Http
 import Json.Decode as Json exposing ( (:=) )
 
-import Effects exposing (Effects)
 import Task exposing (..)
 
 -- MODEL
 
 type alias Model = String
 
-init : (Model, Effects Action)
+init : (Model, Cmd Msg)
 init = ("Loading...", loadData)
 
 -- UPDATE
 
-type Action =
-      Data (Maybe String)
+type Msg
+    = FetchSucceed String
+    | FetchFail Http.Error
 
-update : Action -> Model -> (Model, Effects Action)
-update action model =
-    case action of
-        Data (Just str) -> (str, Effects.none)
-        Data Nothing -> ("Download error", Effects.none)
+update : Msg -> Model -> (Model, Cmd Msg)
+update msg model =
+    case msg of
+        FetchSucceed str ->
+            (str, Cmd.none)
+        FetchFail err ->
+            (toString err, Cmd.none)
 
 -- VIEW
 
-view : Signal.Address Action -> Model -> Html
-view address model =
+view : Model -> Html Msg
+view model =
     div []
-        [ h1 [ ] [ text model] ]
+        [ h1 []
+            [ text model ]
+        ]
 
 -- TASKS
-loadData : Effects Action
+loadData : Cmd Msg
 loadData =
-    Http.get ("data" := Json.string) "http://localhost:3000/api/default"
-        |> Task.toMaybe
-        |> Task.map Data
-        |> Effects.task
+    Task.perform FetchFail FetchSucceed
+    (Http.get ("data" := Json.string) "http://localhost:3000/api/default")
