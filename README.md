@@ -1,6 +1,6 @@
 # MEEN-stack (Mongo, Elm, Express, Node) starter package
 
-**Elm** fullstack starter package with Jade, Sass, Browser-sync and an Express backend.
+**Elm** (0.17) fullstack starter package with Pug (formerly Jade), Sass, Browser-sync and an Node-Express backend.
 
 To use, install and run...:
 

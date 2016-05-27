@@ -14,7 +14,7 @@ var	gulp           = require('gulp'),
 
 var paths = {
 	dist: "dist",
-	server  : './server',
+	server  : 'server',
 	html    : ['src/index.pug'],
 	scss    : ['src/**/*.{scss, sass}'],
 	elm     : "src/**/*.elm",
@@ -30,7 +30,7 @@ gulp.task('serve', function(cb){
 	var called = false;
 	return nodemon({
 		"script": 'server/bin/www',     // port 5000 by default
-	    // "watch": paths.server,
+	    "watch": paths.server,
 		"ext": "js"
 	})
 	.on('start', function () {
