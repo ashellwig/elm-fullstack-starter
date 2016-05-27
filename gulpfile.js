@@ -57,9 +57,11 @@ gulp.task('html', function() {
 
 gulp.task('sass', function() {
 	return gulp.src(paths.scss)
+	.pipe(sourcemaps.init())    // needs to be first
 	.pipe(sass().on('error', sass.logError))
 	.pipe(concat('styles.css'))
 	.pipe( gulpif(production, cleanCss()) )    // minify in production
+	.pipe(sourcemaps.write())   // puts them in wit the js
 	.pipe(gulp.dest(paths.dist))
 	.pipe(browserSync.stream()); 			// injects new styles without page reload!
 });
