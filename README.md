@@ -20,5 +20,5 @@ To compile for production use `gulp build`.
 ## Hotloading!!!!
 See my [Webpack starter](https://github.com/simonh1000/elm-hot-loader)
 
-## Want to try Elm with Elxir / Phoenix?
+## Want to try Elm with Elixir / Phoenix?
 https://github.com/simonh1000/elm-phoenix-starter
