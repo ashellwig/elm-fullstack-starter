@@ -22,19 +22,19 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
-    "browser-sync": "*",
-    "del": "*",
-    "gulp": "*",
-    "gulp-clean-css": "*",
-    "gulp-concat": "*",
-    "gulp-elm": "*",
-    "gulp-if": "*",
-    "gulp-nodemon": "*",
-    "gulp-pug": "*",
-    "gulp-sass": "*",
-    "gulp-sourcemaps": "*",
-    "gulp-uglify": "*",
-    "pug": "*",
-    "run-sequence": "*"
+    "browser-sync": "^2.16.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.12",
+    "gulp-concat": "^2.6.0",
+    "gulp-elm": "^0.5.0",
+    "gulp-if": "^2.0.1",
+    "gulp-nodemon": "^2.1.0",
+    "gulp-pug": "^3.0.4",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^2.0.0",
+    "pug": "^0.1.0",
+    "run-sequence": "^1.2.2"
   }
 }

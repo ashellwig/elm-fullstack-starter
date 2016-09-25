@@ -1,6 +1,7 @@
 module App exposing (init, update, view)
 
 import Html exposing (..)
+import Html.Attributes exposing (href)
 import Http
 import Json.Decode as Json exposing ( (:=) )
 
@@ -32,12 +33,19 @@ update msg model =
 view : Model -> Html Msg
 view model =
     div []
-        [ h1 []
-            [ text model ]
+        [ h1 [] [ text "MEEN-Stack by Simon Hampton" ]
+        , p [] [ text model ]
+        , if model == "Working!!!" then
+            div []
+                [ text "Have you thought about adding a Github star? "
+                , a [ href "https://github.com/simonh1000/elm-fullstack-starter" ]
+                    [ text "Click here" ]
+                ]
+          else text ""
         ]
 
 -- TASKS
 loadData : Cmd Msg
 loadData =
-    Task.perform FetchFail FetchSucceed
-    (Http.get ("data" := Json.string) "http://localhost:3000/api/default")
+    Http.get ("data" := Json.string) "http://localhost:3000/api/default"
+    |> Task.perform FetchFail FetchSucceed

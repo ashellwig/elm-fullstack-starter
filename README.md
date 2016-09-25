@@ -7,15 +7,14 @@ To use, install and run...:
 ```
 git clone https://github.com/simonh1000/elm-fullstack-starter
 npm install
-elm-package install
+# the line above should complete by calling elm-package install, otherwise do manually
 
 npm start       // == gulp
+
 npm production  // == gulp build
 ```
 
 Client side files are compiled into, and served from, './dist'.
 
-To compile for production use `gulp build`.
-
-## Hotloading!!!!
-See my [Webpack starter](https://github.com/simonh1000/elm-hot-loader)
+<!-- ## Hotloading!!!!
+See my [Webpack starter](https://github.com/simonh1000/elm-hot-loader) -->

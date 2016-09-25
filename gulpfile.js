@@ -1,7 +1,7 @@
 var	gulp           = require('gulp'),
 	nodemon        = require('gulp-nodemon'),
 	concat         = require('gulp-concat'),
-	pug           = require('gulp-pug'),
+	pug            = require('gulp-pug'),
 	browserSync    = require('browser-sync').create(),
 	sourcemaps     = require('gulp-sourcemaps'),
 	sass           = require('gulp-sass'),
@@ -13,12 +13,12 @@ var	gulp           = require('gulp'),
 	uglify         = require('gulp-uglify');
 
 var paths = {
-	dist: "dist",
+	dist    : "dist",
 	server  : 'server',
 	html    : ['src/index.pug'],
 	scss    : ['src/**/*.{scss, sass}'],
 	elm     : "src/**/*.elm",
-	elmMain     : "src/Main.elm"
+	elmMain : "src/Main.elm"
 };
 
 var production = false;
