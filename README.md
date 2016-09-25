@@ -18,3 +18,6 @@ Client side files are compiled into, and served from, './dist'.
 
 <!-- ## Hotloading!!!!
 See my [Webpack starter](https://github.com/simonh1000/elm-hot-loader) -->
+
+## Want to try Elm with Elixir / Phoenix?
+https://github.com/simonh1000/elm-phoenix-starter
