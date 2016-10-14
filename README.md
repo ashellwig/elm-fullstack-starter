@@ -1,6 +1,8 @@
 # MEEN-stack (Mongo, Elm, Express, Node) starter package
 
-**Elm** (0.17) fullstack starter package with Pug (formerly Jade), Sass, Browser-sync and an Node-Express backend.
+**Elm** (0.17) fullstack starter package with Pug (formerly Jade), Sass, Browser-sync and a Node-Express backend.
+
+It is also possible to use the compilation functions *without* the node server.
 
 To use, install and run...:
 
@@ -12,6 +14,10 @@ npm install
 npm start       // == gulp
 
 npm production  // == gulp build
+
+npm compile     // == gulp compile
+
+npm serverless  // == gulp serverless
 ```
 
 Client side files are compiled into, and served from, './dist'.

@@ -8,6 +8,8 @@
   "scripts": {
     "start": "gulp",
     "production": "gulp build",
+    "compile": "gulp compile",
+    "serverless": "gulp serverless",
     "postinstall": "elm-package install -y"
   },
   "engines": {

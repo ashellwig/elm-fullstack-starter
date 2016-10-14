@@ -9,10 +9,13 @@ import Task exposing (..)
 
 -- MODEL
 
-type alias Model = String
+type alias Model =
+    { message : String
+    , working : Bool
+    }
 
 init : (Model, Cmd Msg)
-init = ("Loading...", loadData)
+init = (Model "Loading..." False, loadData)
 
 -- UPDATE
 
@@ -24,18 +27,22 @@ update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
     case msg of
         FetchSucceed str ->
-            (str, Cmd.none)
+            Model str True ! []
+        FetchFail (Http.BadResponse 404 _) ->
+            Model
+                "I got a 404. This is the correct response if you ran serverless. Otherwise you need to check your configuration"
+                True ! []
         FetchFail err ->
-            (toString err, Cmd.none)
+            Model (toString err) False ! []
 
 -- VIEW
 
 view : Model -> Html Msg
-view model =
+view {message, working} =
     div []
         [ h1 [] [ text "MEEN-Stack by Simon Hampton" ]
-        , p [] [ text model ]
-        , if model == "Working!!!" then
+        , p [] [ text message ]
+        , if working then
             div []
                 [ text "Have you thought about adding a Github star? "
                 , a [ href "https://github.com/simonh1000/elm-fullstack-starter" ]
