@@ -4,7 +4,7 @@ var router = express.Router();
 router.get('/', index);
 
 function index(req, res) {
-    res.send({data: "Working!!!"});
+    res.send({data: "This is from the server!"});
 }
 
 module.exports = router;

@@ -3,9 +3,8 @@ module App exposing (init, update, view)
 import Html exposing (..)
 import Html.Attributes exposing (href)
 import Http
-import Json.Decode as Json exposing ( (:=) )
+import Json.Decode as Json
 
-import Task exposing (..)
 
 -- MODEL
 
@@ -15,25 +14,33 @@ type alias Model =
     }
 
 init : (Model, Cmd Msg)
-init = (Model "Loading..." False, loadData)
+init =
+    ( Model "Loading..." False
+    , loadData
+    )
+
 
 -- UPDATE
 
 type Msg
-    = FetchSucceed String
-    | FetchFail Http.Error
+    = FetchResponse (Result Http.Error String)
 
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
     case msg of
-        FetchSucceed str ->
+        FetchResponse (Result.Ok str) ->
             Model str True ! []
-        FetchFail (Http.BadResponse 404 _) ->
-            Model
-                "I got a 404. This is the correct response if you ran serverless. Otherwise you need to check your configuration"
-                True ! []
-        FetchFail err ->
+        FetchResponse (Result.Err (Http.BadStatus err)) ->
+            if err.status.code == 404 then
+                Model message404 True ! []
+            else
+                Model (toString err) False ! []
+        FetchResponse (Result.Err err) ->
             Model (toString err) False ! []
+
+message404 =
+    "I got a 404. This is the correct response if you ran serverless. Otherwise you need to check your configuration"
+
 
 -- VIEW
 
@@ -51,8 +58,9 @@ view {message, working} =
           else text ""
         ]
 
--- TASKS
+-- COMMANDS
+
 loadData : Cmd Msg
 loadData =
-    Http.get ("data" := Json.string) "http://localhost:3000/api/default"
-    |> Task.perform FetchFail FetchSucceed
+    Http.get "http://localhost:3000/api/default" (Json.field "data" Json.string)
+    |> Http.send FetchResponse
