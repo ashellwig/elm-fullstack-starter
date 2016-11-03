@@ -7,6 +7,7 @@ sourcemaps     = require('gulp-sourcemaps'),
 sass           = require('gulp-sass'),
 elm            = require('gulp-elm'),
 // production tools
+// minimist       = require('minimist'),
 runSequence    = require('run-sequence'),
 gulpif         = require('gulp-if'),
 cleanCss	   = require('gulp-clean-css'),      // use gulp-cssnano instead
@@ -22,7 +23,10 @@ var paths = {
 	elmMain : "src/Main.elm"
 };
 
-var production = false;
+var argv = require('minimist')(process.argv.slice(2));
+// console.dir(argv);
+
+var production = argv['production'] || false;
 
 /*
 * S E R V E R
@@ -68,7 +72,7 @@ gulp.task('sass', function() {
 	.pipe(sass().on('error', sass.logError))
 	.pipe(concat('styles.css'))
 	.pipe( gulpif(production, cleanCss()) )    // minify in production
-	.pipe(sourcemaps.write())   // puts them in wit the js
+	.pipe( gulpif(!production, sourcemaps.write()))   // puts them in with the css
 	.pipe(gulp.dest(paths.dist))
 	.pipe(browserSync.stream()); 			// injects new styles without page reload!
 });
@@ -106,6 +110,7 @@ gulp.task('watch-server', ['serve'], function() {
 	gulp.watch(paths.scss, ['sass']);
 	gulp.watch(paths.elm, ['elm-compile']);
 	gulp.watch(paths.dist+"/*.{js,html}").on('change', browserSync.reload);
+	// gulp.watch(paths.dist+"/*.{css}").on('change', browserSync.stream);
 });
 
 gulp.task('watch', function() {
@@ -138,8 +143,11 @@ gulp.task('del', function(cb) {
 * Default - load with browserSync
 */
 
+gulp.task('dummy', function() {
+	console.log('in dummy', production);
+});
+
 gulp.task('build', ['del'], function() {
-	production = true;
 	runSequence('compilation', 'elm-compile');
 });
 
