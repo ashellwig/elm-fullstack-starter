@@ -54,5 +54,6 @@ view {message, working} =
 -- TASKS
 loadData : Cmd Msg
 loadData =
-    Http.get ("data" := Json.string) "http://localhost:3000/api/default"
+    -- Http.get ("data" := Json.string) "http://localhost:3000/api/default"
+    Http.get ("data" := Json.string) "/api/default"
     |> Task.perform FetchFail FetchSucceed
