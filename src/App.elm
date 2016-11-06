@@ -8,60 +8,74 @@ import Json.Decode as Json
 
 -- MODEL
 
+
 type alias Model =
     { message : String
     , working : Bool
     }
 
-init : (Model, Cmd Msg)
+
+init : ( Model, Cmd Msg )
 init =
     ( Model "Loading..." False
     , loadData
     )
 
 
+
 -- UPDATE
+
 
 type Msg
     = FetchResponse (Result Http.Error String)
 
-update : Msg -> Model -> (Model, Cmd Msg)
+
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         FetchResponse (Result.Ok str) ->
             Model str True ! []
+
         FetchResponse (Result.Err (Http.BadStatus err)) ->
             if err.status.code == 404 then
                 Model message404 True ! []
             else
                 Model (toString err) False ! []
+
         FetchResponse (Result.Err err) ->
             Model (toString err) False ! []
+
 
 message404 =
     "I got a 404. This is the correct response if you ran serverless. Otherwise you need to check your configuration"
 
 
+
 -- VIEW
 
+
 view : Model -> Html Msg
-view {message, working} =
+view { message, working } =
     div []
-        [ h1 [] [ text "MEEN-Stack by Simon Hampton" ]
+        [ h1 [] [ text "Elm-fullstack by Simon Hampton" ]
         , p [] [ text message ]
         , if working then
             div []
-                [ text "Have you thought about adding a Github star? "
+                [ text "At this stage, many people head over to "
                 , a [ href "https://github.com/simonh1000/elm-fullstack-starter" ]
-                    [ text "Click here" ]
+                    [ text "Github" ]
+                , text " to star this repo!"
                 ]
-          else text ""
+          else
+            text ""
         ]
+
+
 
 -- COMMANDS
 
+
 loadData : Cmd Msg
 loadData =
-    -- Http.get ("data" := Json.string) "http://localhost:3000/api/default"
-    Http.get ("data" := Json.string) "/api/default"
-    |> Task.perform FetchFail FetchSucceed
+    Http.get "/api/default" (Json.field "data" Json.string)
+        |> Http.send FetchResponse
