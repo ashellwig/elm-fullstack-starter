@@ -2,26 +2,22 @@
 
 **Elm** (0.18) development environment including:
 
- - automatic recompilation of Elmm code
- - Pug (formerly Jade),
- - Sass,
+ - automatic recompilation of Elm code
+ - Automatically reload page with Browser-sync
+ - Pug (formerly Jade)
+ - Sass
  - Node-Express server (optional)
- - Browser-sync and a Node-Express backend.
-
-## fullstack - MEEN-stack (Mongo, Elm, Express, Node) starter package
-
-Fullstack starter package with a Node-Express backend.
 
 ## Serverless
 
-Don't need the node server?  No problem, delete /server and run the 'serverless' scripts
+Don't need the Node server?  No problem, delete /server and run the 'serverless' scripts
 
 ## Use, install and run...:
 
 ```
 git clone https://github.com/simonh1000/elm-fullstack-starter
-npm install
-# includes installation of Elm packages (i.e. `elm-package install -y`)
+
+npm install     // includes installation of Elm packages (i.e. `elm-package install -y`)
 
 npm start       // == gulp    (if you get compile errors with npm start, just use gulp directly)
 
@@ -35,6 +31,7 @@ npm serverless  // == gulp serverless
 Client side files are compiled into, and served from, './dist'.
 
 ## Want to try Elm with Elixir / Phoenix?
+
 See my [blog](http://simonh1000.github.io/2016/10/elm-phoenix-gulp/)
 
 ## TODO
