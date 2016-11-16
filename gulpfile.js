@@ -50,8 +50,8 @@ gulp.task('serve', function(cb){
 });
 
 /*
-* H T M L / C S S
-*/
+ * H T M L / C S S
+ */
 
 // runs jade on index.jade
 gulp.task('pug', function() {
@@ -86,6 +86,18 @@ gulp.task('compilation', ['pug', 'sass', 'copy']);
 gulp.task('elm-init', elm.init);
 
 gulp.task('elm-compile', ['elm-init'], function() {
+	// By explicitly handling errors, we prevent Gulp crashing when compile fails
+	function onErrorHandler(err) {
+		console.log(err.message);
+	}
+	return gulp.src(paths.elmMain)             // "./src/Main.elm"
+	.pipe(elm({"debug": true}))
+	.on('error', onErrorHandler)
+	.pipe( gulpif(production, uglify()) )   // uglify
+	.pipe(gulp.dest(paths.dist));
+})
+
+gulp.task('elm-compile-production', ['elm-init'], function() {
 	// By explicitly handling errors, we prevent Gulp crashing when compile fails
 	function onErrorHandler(err) {
 		console.log(err.message);

@@ -2,7 +2,7 @@
 
 **Elm** (0.18) development environment including:
 
- - automatic recompilation of Elm code
+ - automatic recompilation of Elm code, with --debug
  - Automatically reload page with Browser-sync
  - Pug (formerly Jade)
  - Sass
