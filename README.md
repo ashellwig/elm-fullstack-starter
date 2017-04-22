@@ -1,16 +1,16 @@
-# Elm development environment with gulp and live reloading
+# Elm development environment with Gulp
 
 **Elm** (0.18) development environment including:
 
  - automatic recompilation of Elm code, with --debug
  - Automatically reload page with Browser-sync
- - Pug (formerly Jade)
  - Sass
- - Node-Express server (optional)
+ - Pug (formerly Jade)
+ - Node-Express server (optional, if you don't need the server, delete `/server` and run the 'serverless' scripts)
 
-## Serverless
+## Webpack
 
-Don't need the Node server?  No problem, delete /server and run the 'serverless' scripts
+In my daily Elm coding I now use a webpack starter, which is available [here](https://github.com/simonh1000/elm-hot-loading-starter). This has hot-reloading enabled, which I find to be a real productivity boost.
 
 ## Use, install and run...:
 
@@ -36,5 +36,4 @@ See my [blog](http://simonh1000.github.io/2016/10/elm-phoenix-gulp/)
 
 ## TODO
 
- - incorporate elm-bundle
- - 0.18 : elm-make --debug, when supported by gulp-elm
+ - Look into using guls-elm's [elm-bundle](https://github.com/philopon/gulp-elm#elmbundleoutput-options) option (although not clear whether it offers anything in this instance).
