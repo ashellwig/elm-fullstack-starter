@@ -1,6 +1,6 @@
 # Elm development environment with Gulp
 
-**In my daily Elm coding I now use my [webpack starter](https://github.com/simonh1000/elm-hot-loading-starter). This has hot-reloading enabled, which is a real productivity boost.
+**In my daily Elm coding I now use my [webpack starter](https://github.com/simonh1000/elm-hot-loading-starter). This has hot-reloading enabled, which is a real productivity boost.**
 
 **Elm 0.18** development environment including:
 
